@@ -1,0 +1,92 @@
+---
+import PricingCard from './PricingCard.astro';
+
+// Placeholder pricing data
+const pricingPlans = [
+  {
+    planName: "Starter",
+    price: "$0",
+    pricePeriod: "/month",
+    description: "Perfect for individuals and small teams getting started.",
+    features: [
+      { text: "Up to 5 projects", included: true },
+      { text: "Basic task management", included: true },
+      { text: "2GB storage", included: true },
+      { text: "Community support", included: true },
+      { text: "Real-time sync", included: false },
+      { text: "Advanced analytics", included: false },
+    ],
+    isFeatured: false,
+    ctaText: "Start for free",
+  },
+  {
+    planName: "Pro",
+    price: "$12",
+    pricePeriod: "/month",
+    description: "For growing teams needing more power and collaboration.",
+    features: [
+      { text: "Unlimited projects", included: true },
+      { text: "Advanced task management", included: true },
+      { text: "50GB storage", included: true },
+      { text: "Priority support", included: true },
+      { text: "Real-time sync", included: true },
+      { text: "Advanced analytics", included: true },
+      { text: "Integrations", included: true },
+    ],
+    isFeatured: true, // Highlight this plan
+    ctaText: "Choose Pro",
+  },
+  {
+    planName: "Enterprise",
+    price: "Custom",
+    pricePeriod: "",
+    description: "Tailored solutions for large organizations with specific needs.",
+    features: [
+      { text: "Everything in Pro", included: true },
+      { text: "Unlimited storage", included: true },
+      { text: "Dedicated account manager", included: true },
+      { text: "Custom integrations", included: true },
+      { text: "SLA & enhanced security", included: true },
+    ],
+    isFeatured: false,
+    ctaText: "Contact Sales",
+  },
+];
+
+interface Props {
+    id?: string;
+}
+
+const { id = "pricing" } = Astro.props;
+---
+
+<section id={id} class="py-16 sm:py-20 lg:py-24 bg-background">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="text-3xl font-extrabold text-text-primary sm:text-4xl">
+        Choose the Right Plan for Your Team
+      </h2>
+      <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+        Simple, transparent pricing that scales with your needs. No hidden fees.
+      </p>
+    </div>
+    {/* Pricing Grid */}
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+      {pricingPlans.map(plan => (
+        <PricingCard
+          planName={plan.planName}
+          price={plan.price}
+          pricePeriod={plan.pricePeriod}
+          description={plan.description}
+          features={plan.features}
+          isFeatured={plan.isFeatured}
+          ctaText={plan.ctaText}
+          ctaLink="#" {/* Replace with actual links */}
+        />
+      ))}
+    </div>
+     <p class="mt-12 text-center text-sm text-text-secondary">
+        Need something different? <a href="#contact" class="font-medium text-brand-primary hover:text-brand-glow">Contact us</a> for custom solutions.
+    </p>
+  </div>
+</section>
