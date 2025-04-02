@@ -38,14 +38,17 @@ const { question, answer, isOpen = false } = Astro.props;
     button.addEventListener('click', () => {
       const isExpanded = button.getAttribute('aria-expanded') === 'true';
       const answerId = button.getAttribute('aria-controls');
-      const answerEl = document.getElementById(answerId);
-      const icons = button.querySelectorAll('svg');
+      // Add null check for answerId
+      if (answerId) {
+        const answerEl = document.getElementById(answerId);
+        const icons = button.querySelectorAll('svg');
 
-      button.setAttribute('aria-expanded', String(!isExpanded));
-      answerEl?.classList.toggle('hidden');
+        button.setAttribute('aria-expanded', String(!isExpanded));
+        answerEl?.classList.toggle('hidden');
 
-      // Toggle icons visibility
-      icons.forEach(icon => icon.classList.toggle('hidden'));
+        // Toggle icons visibility
+        icons.forEach(icon => icon.classList.toggle('hidden'));
+      }
     });
   });
 </script>

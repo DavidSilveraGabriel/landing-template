@@ -1,0 +1,56 @@
+---
+import AccordionItem from './AccordionItem.astro';
+
+// Placeholder FAQ data
+const faqs = [
+  {
+    question: "What is this platform?",
+    answer: "This platform is a comprehensive project management solution designed to help teams collaborate, track progress, and deliver projects efficiently."
+  },
+  {
+    question: "Is there a free trial available?",
+    answer: "Yes, we offer a free Starter plan with basic features. You can upgrade to a paid plan anytime for more advanced capabilities."
+  },
+  {
+    question: "Can I integrate this with other tools?",
+    answer: "Absolutely! Our Pro and Enterprise plans support integrations with popular tools like Slack, Google Workspace, GitHub, and more. Contact us for specific integration requests."
+  },
+  {
+    question: "How secure is my data?",
+    answer: "We take data security very seriously. We use industry-standard encryption, regular backups, and robust security measures to protect your information. Enterprise plans offer additional security features."
+  },
+   {
+    question: "What kind of support do you offer?",
+    answer: "All users have access to our community forums and knowledge base. Paid plans include email support, and the Pro plan offers priority support. Enterprise plans come with a dedicated account manager."
+  },
+];
+
+interface Props {
+    id?: string;
+}
+
+const { id = "faq" } = Astro.props;
+---
+
+<section id={id} class="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-background via-brand-secondary/5 to-background">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+      <h2 class="text-3xl font-extrabold text-text-primary sm:text-4xl">
+        Frequently Asked Questions
+      </h2>
+      <p class="mt-4 text-lg text-text-secondary">
+        Have questions? We've got answers. If you don't find what you're looking for, feel free to contact us.
+      </p>
+    </div>
+    <div class="max-w-3xl mx-auto">
+      <dl class="space-y-0 divide-y divide-white/0"> {/* Use AccordionItem's border */}
+        {faqs.map((faq, index) => (
+          <AccordionItem
+            question={faq.question}
+            answer={faq.answer}
+          />
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>
