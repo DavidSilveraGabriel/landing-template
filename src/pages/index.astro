@@ -5,6 +5,7 @@ import HeroSection from '../components/HeroSection.astro'; // Import HeroSection
 import SocialProof from '../components/SocialProof.astro'; // Import SocialProof
 import FeatureSection from '../components/FeatureSection.astro'; // Import FeatureSection
 import FeatureGrid from '../components/FeatureGrid.astro'; // Import FeatureGrid
+import TestimonialsSection from '../components/TestimonialsSection.astro'; // Import TestimonialsSection
 
 // Define the page title
 const pageTitle = "My Landing Page"; // Replace with your actual title
@@ -50,6 +51,21 @@ const pageTitle = "My Landing Page"; // Replace with your actual title
 				>
 					View Pricing Plans
 				</a>
+			</div>
+		</section>
+
+		{/* Add the TestimonialsSection component */}
+		<TestimonialsSection />
+
+		{/* Placeholder for next section (e.g., Pricing) */}
+		<section id="pricing" class="py-16 sm:py-20 lg:py-24 bg-background">
+			<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="text-3xl font-extrabold text-center text-text-primary sm:text-4xl mb-12">
+					Pricing Plans Placeholder
+				</h2>
+				<div class="h-96 border border-dashed border-text-secondary/30 rounded-lg flex items-center justify-center">
+					<p class="text-text-secondary">Pricing Cards Area</p>
+				</div>
 			</div>
 		</section>
 

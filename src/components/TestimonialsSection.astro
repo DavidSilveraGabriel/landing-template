@@ -1,0 +1,55 @@
+---
+import TestimonialCard from './TestimonialCard.astro';
+
+// Placeholder testimonial data
+const testimonials = [
+  {
+    quote: "This platform transformed how our team collaborates. We're more organized and efficient than ever before.",
+    authorName: "Alex Johnson",
+    authorTitle: "Project Manager, TechCorp",
+    authorImage: "https://via.placeholder.com/40x40/10B981/FFFFFF?text=AJ"
+  },
+  {
+    quote: "The analytics features provide incredible insights that help us make better decisions.",
+    authorName: "Samantha Lee",
+    authorTitle: "Marketing Lead, Innovate Solutions",
+    authorImage: "https://via.placeholder.com/40x40/047857/FFFFFF?text=SL"
+  },
+  {
+    quote: "Intuitive, powerful, and excellent customer support. Highly recommended!",
+    authorName: "David Chen",
+    authorTitle: "CEO, Startup Hub",
+    // authorImage: "" // Example without image
+  },
+];
+
+interface Props {
+    id?: string;
+}
+
+const { id = "testimonials" } = Astro.props;
+---
+
+<section id={id} class="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-background via-brand-secondary/5 to-background overflow-hidden">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="text-3xl font-extrabold text-text-primary sm:text-4xl">
+        What Our Users Say
+      </h2>
+      <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+        Hear from teams who have boosted their productivity and success.
+      </p>
+    </div>
+    {/* Simple Grid Layout - Carousel can be added later */}
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {testimonials.map(testimonial => (
+        <TestimonialCard
+          quote={testimonial.quote}
+          authorName={testimonial.authorName}
+          authorTitle={testimonial.authorTitle}
+          authorImage={testimonial.authorImage}
+        />
+      ))}
+    </div>
+  </div>
+</section>

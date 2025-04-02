@@ -1,0 +1,95 @@
+---
+interface Feature {
+  text: string;
+  included: boolean;
+}
+
+interface Props {
+  planName: string;
+  price: string;
+  pricePeriod?: string; // e.g., /month, /year
+  description: string;
+  features: Feature[];
+  isFeatured?: boolean; // To highlight a specific plan
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  planName,
+  price,
+  pricePeriod = '/month',
+  description,
+  features,
+  isFeatured = false,
+  ctaText = 'Get started',
+  ctaLink = '#'
+} = Astro.props;
+
+const cardClasses = [
+  'flex', 'flex-col', 'h-full', 'rounded-lg', 'shadow-lg', 'p-6', 'border',
+  isFeatured
+    ? 'bg-brand-secondary/10 border-brand-primary relative overflow-hidden' // Featured styles
+    : 'bg-white/5 border-white/10 backdrop-blur-lg' // Standard styles
+].join(' ');
+
+const buttonClasses = [
+    'w-full', 'inline-flex', 'items-center', 'justify-center', 'px-6', 'py-3', 'border', 'border-transparent', 'text-base', 'font-medium', 'rounded-md', 'shadow-sm', 'transition-colors', 'focus:outline-none', 'focus:ring-2', 'focus:ring-offset-2', 'focus:ring-offset-background',
+    isFeatured
+        ? 'text-background bg-brand-primary hover:bg-brand-glow hover:text-black focus:ring-brand-primary' // Featured button
+        : 'text-text-primary bg-white/10 hover:bg-white/20 border-white/20 focus:ring-white' // Standard button
+].join(' ');
+---
+
+<div class={cardClasses}>
+  {isFeatured && (
+    <div class="absolute top-0 right-0 -mt-3 -mr-3">
+      <div class="bg-brand-primary text-background text-xs font-semibold py-1 px-3 rounded-full shadow-md">
+        Most Popular
+      </div>
+    </div>
+  )}
+
+  <div class="mb-4">
+    <h3 class="text-xl font-semibold text-text-primary">{planName}</h3>
+    <p class="mt-1 text-sm text-text-secondary">{description}</p>
+  </div>
+
+  <div class="mb-6">
+    <span class="text-4xl font-extrabold text-text-primary">{price}</span>
+    <span class="text-base font-medium text-text-secondary">{pricePeriod}</span>
+  </div>
+
+  <ul class="space-y-3 mb-8 flex-grow">
+    {features.map(feature => (
+      <li class={`flex items-start ${feature.included ? '' : 'opacity-50'}`}>
+        <div class="flex-shrink-0">
+          {feature.included ? (
+            <svg class="h-5 w-5 text-brand-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          ) : (
+             <svg class="h-5 w-5 text-text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          )}
+        </div>
+        <p class="ml-3 text-sm text-text-secondary">{feature.text}</p>
+      </li>
+    ))}
+  </ul>
+
+  <div class="mt-auto">
+    <a href={ctaLink} class={buttonClasses}>
+      {ctaText}
+    </a>
+  </div>
+</div>
+
+<style>
+  /* Ensure backdrop filter works for standard cards */
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+</style>

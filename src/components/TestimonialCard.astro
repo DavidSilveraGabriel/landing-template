@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets'; // For potential author images
+
+interface Props {
+  quote: string;
+  authorName: string;
+  authorTitle: string;
+  authorImage?: string; // Optional path to author image
+}
+
+const { quote, authorName, authorTitle, authorImage } = Astro.props;
+const defaultAvatar = 'https://via.placeholder.com/40x40/A7F3D0/0D0D0D?text=AV'; // Placeholder avatar
+---
+
+<figure class="bg-white/5 backdrop-blur-lg p-6 rounded-lg shadow-lg border border-white/10 flex flex-col h-full">
+  <blockquote class="flex-grow mb-4">
+    <p class="text-base text-text-primary italic">"{quote}"</p>
+  </blockquote>
+  <figcaption class="flex items-center mt-auto border-t border-white/10 pt-4">
+    {authorImage || defaultAvatar ? (
+      <img
+        class="h-10 w-10 rounded-full mr-3 object-cover"
+        src={authorImage || defaultAvatar}
+        alt={`Avatar of ${authorName}`}
+        loading="lazy"
+      />
+      /* Astro Image example if local:
+      <Image
+        class="h-10 w-10 rounded-full mr-3 object-cover"
+        src={authorImage || defaultAvatar} // Needs adjustment if default is URL
+        alt={`Avatar of ${authorName}`}
+        width={40}
+        height={40}
+        format="webp"
+        loading="lazy"
+      />
+      */
+    ) : (
+      <div class="h-10 w-10 rounded-full bg-brand-secondary mr-3"></div> // Fallback if no image
+    )}
+    <div>
+      <div class="font-semibold text-text-primary">{authorName}</div>
+      <div class="text-sm text-text-secondary">{authorTitle}</div>
+    </div>
+  </figcaption>
+</figure>
+
+<style>
+  /* Ensure backdrop filter works */
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+</style>
