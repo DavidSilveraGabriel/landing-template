@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro'; // Import Navbar
+import HeroSection from '../components/HeroSection.astro'; // Import HeroSection
+import SocialProof from '../components/SocialProof.astro'; // Import SocialProof
+import FeatureSection from '../components/FeatureSection.astro'; // Import FeatureSection
+import FeatureGrid from '../components/FeatureGrid.astro'; // Import FeatureGrid
+
+// Define the page title
+const pageTitle = "My Landing Page"; // Replace with your actual title
+---
+
+<Layout title={pageTitle}> {/* Pass the title prop */}
+	<Navbar /> {/* Add the Navbar */}
+	<main> {/* Remove pt-16 here as HeroSection handles its own padding/positioning */}
+		<HeroSection /> {/* Add the HeroSection component */}
+		<SocialProof /> {/* Add the SocialProof component */}
+
+		{/* Use the FeatureSection component */}
+		<FeatureSection
+			id="features" {/* Add ID for nav link */}
+			title="Streamlined Collaboration"
+			description="Work seamlessly with your team, no matter where they are. Share files, track progress, and communicate effectively in one central hub."
+			imageSrc="https://via.placeholder.com/600x400/047857/FFFFFF?text=Collaboration+Visual"
+			imagePosition="left"
+		/>
+
+		<FeatureSection
+			title="Advanced Analytics"
+			description="Gain valuable insights into your project performance. Make data-driven decisions with comprehensive reporting and visualizations."
+			imageSrc="https://via.placeholder.com/600x400/10B981/FFFFFF?text=Analytics+Visual"
+			imagePosition="right"
+		/>
+
+		{/* Add the FeatureGrid component */}
+		<FeatureGrid id="more-features" />
+
+		{/* Placeholder for next section (e.g., CTA) */}
+		<section id="cta" class="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-background via-brand-primary/10 to-background">
+			<div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+				<h2 class="text-3xl font-extrabold text-text-primary sm:text-4xl mb-4">
+					Ready to Get Started?
+				</h2>
+				<p class="text-lg text-text-secondary mb-8 max-w-xl mx-auto">
+					Join thousands of teams already boosting their productivity.
+				</p>
+				<a
+					href="#pricing"
+					class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-background bg-brand-primary hover:bg-brand-secondary md:py-4 md:text-lg md:px-10 transition-colors shadow-lg hover:shadow-brand-glow/30"
+				>
+					View Pricing Plans
+				</a>
+			</div>
+		</section>
+
+	</main>
+</Layout>

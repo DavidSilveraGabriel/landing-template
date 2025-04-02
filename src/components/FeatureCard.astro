@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon?: string; // Optional: Name of an icon (e.g., from an icon library) or path to SVG
+}
+
+const { title, description, icon } = Astro.props;
+---
+
+<div class="bg-white/5 backdrop-blur-lg p-6 rounded-lg shadow-lg border border-white/10 transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-brand-glow/20">
+  {icon && (
+    <div class="mb-4 inline-flex items-center justify-center h-12 w-12 rounded-full bg-brand-primary/20 text-brand-primary">
+      {/* Placeholder for icon - Replace with actual icon component or SVG */}
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.355a12.06 12.06 0 0 1-4.5 0m1.5-10.5a6.023 6.023 0 0 1-1.5-.189m1.5.189a6.023 6.023 0 0 0-1.5-.189m11.25 5.364a11.956 11.956 0 0 1-2.63 3.318c-1.35.978-2.93.978-4.28 0a11.956 11.956 0 0 1-2.63-3.318m11.25 0A11.956 11.956 0 0 0 12 5.67m8.25 5.364a11.956 11.956 0 0 1-2.63-3.318m0 0V11.13m0-5.46a11.956 11.956 0 0 1 2.63 3.318m0 0h.008v.008h-.008v-.008Zm-10.5 0h.008v.008h-.008v-.008Zm-1.5 0h.008v.008h-.008v-.008Z" />
+      </svg>
+    </div>
+  )}
+  <h3 class="text-lg font-semibold text-text-primary mb-2">{title}</h3>
+  <p class="text-sm text-text-secondary">{description}</p>
+</div>
+
+<style>
+  /* Add specific styles for the card if needed, e.g., glassmorphism */
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px); /* Adjust blur amount as needed */
+    -webkit-backdrop-filter: blur(16px); /* Safari support */
+  }
+  /* Example subtle glow on hover using the configured animation */
+  .hover\:shadow-brand-glow\/20:hover {
+     box-shadow: 0 0 20px 5px rgba(167, 243, 208, 0.2); /* Corresponds to brand-glow color with 20% opacity */
+  }
+</style>

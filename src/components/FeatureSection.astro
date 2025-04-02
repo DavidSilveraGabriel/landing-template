@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets'; // Use Astro's Image component for optimization
+
+interface Props {
+  title: string;
+  description: string;
+  imageSrc: string; // Expecting path relative to src/assets or a full URL
+  imageAlt?: string;
+  imagePosition?: 'left' | 'right';
+  id?: string; // Optional ID for navigation
+}
+
+const {
+  title,
+  description,
+  imageSrc,
+  imageAlt = 'Feature image',
+  imagePosition = 'left', // Default image position
+  id
+} = Astro.props;
+
+// Placeholder image if none provided (adjust path if needed)
+const defaultImage = 'https://via.placeholder.com/600x400/10B981/FFFFFF?text=Feature+Visual';
+const finalImageSrc = imageSrc || defaultImage;
+
+// Determine layout classes based on imagePosition
+const textOrderClass = imagePosition === 'left' ? 'md:order-2' : 'md:order-1';
+const imageOrderClass = imagePosition === 'left' ? 'md:order-1' : 'md:order-2';
+---
+
+<section id={id} class="py-16 sm:py-20 lg:py-24 overflow-hidden">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-center">
+      {/* Text Content */}
+      <div class={textOrderClass}>
+        <h2 class="text-3xl font-extrabold text-text-primary sm:text-4xl mb-4">
+          {title}
+        </h2>
+        <p class="text-lg text-text-secondary mb-6">
+          {description}
+        </p>
+        {/* Optional: Add list of features or CTA within the text block */}
+        <a href="#learn-more" class="text-brand-primary hover:text-brand-glow font-medium transition-colors">
+          Learn More &rarr;
+        </a>
+      </div>
+
+      {/* Image Content */}
+      <div class={imageOrderClass}>
+        {/* Basic placeholder styling - replace with actual image/visual */}
+        <div class="aspect-video bg-gradient-to-br from-brand-secondary/20 to-brand-primary/20 rounded-lg shadow-lg p-2">
+           {/* Using a simple img tag for placeholder URLs, switch to Astro Image for local assets */}
+           <img
+             src={finalImageSrc}
+             alt={imageAlt}
+             class="w-full h-full object-cover rounded-md"
+             loading="lazy"
+           />
+           {/* Example using Astro Image component (if finalImageSrc is local):
+           <Image
+             src={finalImageSrc}
+             alt={imageAlt}
+             class="w-full h-full object-cover rounded-md"
+             widths={[400, 800, 1200]}
+             sizes="(max-width: 768px) 100vw, 50vw"
+             loading="lazy"
+           />
+           */}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+---
+import FeatureCard from './FeatureCard.astro';
+
+// Placeholder data for feature cards
+const features = [
+  {
+    title: "Task Management",
+    description: "Keep track of tasks, deadlines, and progress with intuitive tools.",
+    icon: "placeholder" // Indicate using the placeholder icon in FeatureCard
+  },
+  {
+    title: "Real-time Sync",
+    description: "All changes are updated instantly across all devices for seamless collaboration.",
+    icon: "placeholder"
+  },
+  {
+    title: "Custom Workflows",
+    description: "Adapt the platform to your team's specific processes and needs.",
+    icon: "placeholder"
+  },
+   {
+    title: "Secure Storage",
+    description: "Keep your project files safe and accessible with reliable cloud storage.",
+    icon: "placeholder"
+  },
+   {
+    title: "Integrations",
+    description: "Connect with your favorite tools like Slack, Google Drive, and more.",
+    icon: "placeholder"
+  },
+   {
+    title: "Reporting Dashboards",
+    description: "Visualize project data and track key metrics with customizable dashboards.",
+    icon: "placeholder"
+  },
+];
+
+interface Props {
+    id?: string;
+    title?: string;
+}
+
+const { id, title = "Everything you need to boost productivity" } = Astro.props;
+---
+
+<section id={id} class="py-16 sm:py-20 lg:py-24 bg-background">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="text-3xl font-extrabold text-text-primary sm:text-4xl">
+        {title}
+      </h2>
+      <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+        From detailed task tracking to high-level reporting, manage every aspect of your projects efficiently.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {features.map(feature => (
+        <FeatureCard
+          title={feature.title}
+          description={feature.description}
+          icon={feature.icon}
+        />
+      ))}
+    </div>
+  </div>
+</section>

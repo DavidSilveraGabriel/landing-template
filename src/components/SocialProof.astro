@@ -1,0 +1,33 @@
+---
+// Placeholder logos - replace with actual logo paths or SVGs
+const logos = [
+  { name: 'Logoipsum 1', src: 'https://via.placeholder.com/150x50/FFFFFF/0D0D0D?text=Logo+1', alt: 'Client Logo 1' },
+  { name: 'Logoipsum 2', src: 'https://via.placeholder.com/150x50/FFFFFF/0D0D0D?text=Logo+2', alt: 'Client Logo 2' },
+  { name: 'Logoipsum 3', src: 'https://via.placeholder.com/150x50/FFFFFF/0D0D0D?text=Logo+3', alt: 'Client Logo 3' },
+  { name: 'Logoipsum 4', src: 'https://via.placeholder.com/150x50/FFFFFF/0D0D0D?text=Logo+4', alt: 'Client Logo 4' },
+  { name: 'Logoipsum 5', src: 'https://via.placeholder.com/150x50/FFFFFF/0D0D0D?text=Logo+5', alt: 'Client Logo 5' },
+];
+---
+
+<section id="social-proof" class="py-12 sm:py-16 lg:py-20 bg-background">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8 sm:mb-12">
+      <p class="text-sm font-semibold uppercase tracking-wider text-text-secondary">
+        Trusted by teams worldwide
+      </p>
+    </div>
+    <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-8 sm:gap-x-12 lg:gap-x-16">
+      {logos.map(logo => (
+        <div class="flex justify-center">
+          <img
+            class="h-8 sm:h-10 lg:h-12 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+            src={logo.src}
+            alt={logo.alt}
+            title={logo.name}
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
