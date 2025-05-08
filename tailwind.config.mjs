@@ -6,7 +6,7 @@ export default {
       colors: {
         'background': '#0D0D0D', // Casi negro
         'text-primary': '#F3F4F6', // Gris claro (texto principal)
-        'text-secondary': '#A1A1AA', // Gris (texto secundario, ejemplo)
+        'text-secondary': '#C0C0C0', // Gris más claro para mejor contraste
         'brand': {
           'primary': '#10B981',   // Verde Primario (Emerald 500)
           'secondary': '#047857', // Verde Secundario (Emerald 700)

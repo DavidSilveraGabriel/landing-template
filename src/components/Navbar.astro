@@ -56,8 +56,11 @@ const navLinks = [
     </div>
   </nav>
 
+  {/* Mobile Menu Overlay */}
+  <div class="fixed inset-0 bg-black/50 z-40 md:hidden hidden" id="mobile-menu-overlay"></div>
+
   {/* Mobile Menu (Placeholder - hidden by default) */}
-  <div class="md:hidden hidden" id="mobile-menu">
+  <div class="md:hidden hidden relative z-50" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
       {navLinks.map(link => (
         <a
@@ -81,15 +84,33 @@ const navLinks = [
   </div>
 </header>
 
+<style>
+  /* Basic slide-down animation for mobile menu */
+  #mobile-menu {
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+  }
+
+  #mobile-menu.open {
+    max-height: 500px; /* Adjust based on content */
+    opacity: 1;
+  }
+</style>
+
 <script>
   // Basic mobile menu toggle (will need refinement)
   const btn = document.querySelector('button[aria-controls="mobile-menu"]');
   const menu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('mobile-menu-overlay');
 
   btn?.addEventListener('click', () => {
     const expanded = btn.getAttribute('aria-expanded') === 'true' || false;
     btn.setAttribute('aria-expanded', (!expanded).toString());
-    menu?.classList.toggle('hidden');
+    menu?.classList.toggle('hidden'); // Keep hidden for initial state and non-js fallback
+    menu?.classList.toggle('open'); // Toggle 'open' class for animation
+    overlay?.classList.toggle('hidden'); // Toggle overlay visibility
     // Optional: Change icon on toggle
   });
 </script>
