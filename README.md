@@ -3,11 +3,11 @@
 ```mermaid
 flowchart TD
     subgraph Inicia Conversación y Prepara n8n
-        AA[Inicio Conversación Typebot] --> AB[Input Usuario (Nombre, primer mensaje)];
-        AB --> AC[Set Variable (mensaje_a_enviar = input_usuario) ];
+        AA[Inicio Conversación Typebot] --> AB[Input Usuario Nombre, primer mensaje];
+        AB --> AC[Set Variable mensaje_a_enviar = input_usuario ];
     end
 
-    AC --> A[HTTP Request (Llama a n8n, guarda respuesta en n8n_raw_response)];
+    AC --> A[HTTP Request Llama a n8n, guarda respuesta en n8n_raw_response];
     
     A --> B[Set Variable total_mensajes = parse(n8n_raw_response).messages.length ];
 
@@ -15,7 +15,7 @@ flowchart TD
     C --True--> D[Set Variable mensaje_bot_1 = parse(n8n_raw_response).messages[0].content ];
     D --> E[Bubble: mensaje_bot_1];
     
-    C --False--> Z[Input (Respuesta del usuario)];
+    C --False--> Z[Input Respuesta del usuario];
 
     E --> F{Condición: total_mensajes >= 2};
     F --True--> G[Set Variable mensaje_bot_2 = parse(n8n_raw_response).messages[1].content ];
