@@ -1,5 +1,40 @@
 # Astro Starter Kit: Basics
 
+```mermaid
+flowchart TD
+    subgraph Inicia Conversación y Prepara n8n
+        AA[Inicio Conversación Typebot] --> AB[Input Usuario (Nombre, primer mensaje)];
+        AB --> AC[Set Variable (mensaje_a_enviar = input_usuario) ];
+    end
+
+    AC --> A[HTTP Request (Llama a n8n, guarda respuesta en n8n_raw_response)];
+    
+    A --> B[Set Variable total_mensajes = parse(n8n_raw_response).messages.length ];
+
+    B --> C{Condición: total_mensajes >= 1};
+    C --True--> D[Set Variable mensaje_bot_1 = parse(n8n_raw_response).messages[0].content ];
+    D --> E[Bubble: mensaje_bot_1];
+    
+    C --False--> Z[Input (Respuesta del usuario)];
+
+    E --> F{Condición: total_mensajes >= 2};
+    F --True--> G[Set Variable mensaje_bot_2 = parse(n8n_raw_response).messages[1].content ];
+    G --> H[Bubble: mensaje_bot_2];
+    F --False--> Z;
+
+    H --> I{Condición: total_mensajes >= 3};
+    I --True--> J[Set Variable mensaje_bot_3 = parse(n8n_raw_response).messages[2].content ];
+    J --> K[Bubble: mensaje_bot_3];
+    I --False--> Z;
+
+    K --> L{Condición: total_mensajes >= 4};
+    L --True--> M[Bloque: Set Variable mensaje_bot_4 = parse(n8n_raw_response).messages[3].content ];
+    M --> N[Bubble: mensaje_bot_4];
+    L --False--> Z;
+    
+    N --> Z;
+```
+
 ```sh
 npm create astro@latest -- --template basics
 ```
