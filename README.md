@@ -7,28 +7,28 @@ flowchart TD
         AB --> AC[Set Variable mensaje_a_enviar = input_usuario ];
     end
 
-    AC --> A[HTTP Request Llama a n8n, guarda respuesta en n8n_raw_response];
+    AC --> A[HTTP Request to n8n];
     
-    A --> B[Set Variable total_mensajes = parse(n8n_raw_response).messages.length ];
+    A --> B[Set Variable total_mensajes];
 
-    B --> C{Condición: total_mensajes >= 1};
-    C --True--> D[Set Variable mensaje_bot_1 = parse(n8n_raw_response).messages[0].content ];
+    B --> C{total_mensajes >= 1};
+    C --True--> D[Set Variable mensaje_bot_1];
     D --> E[Bubble: mensaje_bot_1];
     
-    C --False--> Z[Input Respuesta del usuario];
+    C --False--> Z[User Input];
 
-    E --> F{Condición: total_mensajes >= 2};
-    F --True--> G[Set Variable mensaje_bot_2 = parse(n8n_raw_response).messages[1].content ];
+    E --> F{total_mensajes >= 2};
+    F --True--> G[Set Variable mensaje_bot_2];
     G --> H[Bubble: mensaje_bot_2];
     F --False--> Z;
 
-    H --> I{Condición: total_mensajes >= 3};
-    I --True--> J[Set Variable mensaje_bot_3 = parse(n8n_raw_response).messages[2].content ];
+    H --> I{total_mensajes >= 3};
+    I --True--> J[Set Variable mensaje_bot_3];
     J --> K[Bubble: mensaje_bot_3];
     I --False--> Z;
 
-    K --> L{Condición: total_mensajes >= 4};
-    L --True--> M[Bloque: Set Variable mensaje_bot_4 = parse(n8n_raw_response).messages[3].content ];
+    K --> L{total_mensajes >= 4};
+    L --True--> M[Set Variable mensaje_bot_4];
     M --> N[Bubble: mensaje_bot_4];
     L --False--> Z;
     
