@@ -9,6 +9,7 @@ import TestimonialsSection from '../components/TestimonialsSection.astro'; // Im
 import PricingSection from '../components/PricingSection.astro'; // Import PricingSection
 import FaqSection from '../components/FaqSection.astro'; // Import FaqSection
 import Footer from '../components/Footer.astro'; // Import Footer
+import CTABanner from '../components/CTABanner.astro'; // Import CTABanner
 
 // Define the page title
 const pageTitle = "My Landing Page"; // Replace with your actual title
@@ -39,23 +40,8 @@ const pageTitle = "My Landing Page"; // Replace with your actual title
 		{/* Add the FeatureGrid component */}
 		<FeatureGrid id="more-features" />
 
-		{/* Placeholder for next section (e.g., CTA) */}
-		<section id="cta" class="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-background via-brand-primary/10 to-background">
-			<div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-				<h2 class="text-3xl font-extrabold text-text-primary sm:text-4xl mb-4">
-					Ready to Get Started?
-				</h2>
-				<p class="text-lg text-text-secondary mb-8 max-w-xl mx-auto">
-					Join thousands of teams already boosting their productivity.
-				</p>
-				<a
-					href="#pricing"
-					class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-background bg-brand-primary hover:bg-brand-secondary md:py-4 md:text-lg md:px-10 transition-colors shadow-lg hover:shadow-brand-glow/30"
-				>
-					View Pricing Plans
-				</a>
-			</div>
-		</section>
+		{/* Add the CTABanner component */}
+		<CTABanner />
 
 		{/* Add the TestimonialsSection component */}
 		<TestimonialsSection />
